@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fx:id="mainVB" alignment="TOP_CENTER" layoutY="20.0" prefHeight="380.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <VBox fx:id="combosVB" prefHeight="89.0" prefWidth="600.0">
+               <children>
+                  <HBox fx:id="combosHB" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <HBox fx:id="articleHB" prefHeight="100.0" prefWidth="342.0">
+                           <children>
+                              <Label fx:id="articleLabel" text="Artículo" />
+                              <ComboBox fx:id="articleCB" prefWidth="150.0">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin></ComboBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="brandHB" prefHeight="100.0" prefWidth="386.0">
+                           <children>
+                              <Label fx:id="brandLabel" text="Marca" />
+                              <ComboBox fx:id="brandCB" prefWidth="150.0">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin></ComboBox>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="checksVB" prefHeight="83.0" prefWidth="100.0">
+               <children>
+                  <CheckBox fx:id="amazonCHB" mnemonicParsing="false" text="Amazon" />
+                  <CheckBox fx:id="corteinglesCHB" mnemonicParsing="false" text="El Corte Inglés" />
+                  <CheckBox fx:id="marktCHB" mnemonicParsing="false" text="Media Markt" />
+                  <CheckBox fx:id="fnacCHB" mnemonicParsing="false" text="Fnac" />
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <Button fx:id="searchBTN" mnemonicParsing="false" text="Buscar" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
