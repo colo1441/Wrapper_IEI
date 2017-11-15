@@ -30,7 +30,7 @@ public class Main extends Application {
     public static void main(String[] args) {
 
         Firefox();
-        launch(args);
+        //launch(args);
 
 
     }
@@ -60,16 +60,17 @@ public class Main extends Application {
             hogar.click();
 
             WebDriverWait waiting = new WebDriverWait(driver, 50);
+            waiting.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a[href*='https://tiendas.mediamarkt.es/cafeteras-cafe']")));
 
-           WebElement vermas = driver.findElement(By.cssSelector("a[href*='cocina']"));
-            //WebElement vermas = driver.findElement(By.className("link--vermas"));
-            vermas.click();
+            WebElement cafes = driver.findElement(By.cssSelector("a[href*='https://tiendas.mediamarkt.es/cafeteras-cafe']"));
+            cafes.click();
 
-            WebElement cafeteras = driver.findElement(By.cssSelector("a[href*='cafeteras-cafe]"));
+            /*
+            WebElement cafeteras = driver.findElement(By.className("categoryTree1"));
             cafeteras.click();
+            */
 
-
-            driver.quit();
+            //driver.quit();
 
         }catch(Exception exc)
         {
