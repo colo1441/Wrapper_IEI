@@ -38,20 +38,43 @@ public class Main extends Application {
     //WebDriver
     public static void Firefox()
     {
-        String exePath = "D:\\Archivos de Programa\\geckodriver-v0.19.1-win64\\geckodriver.exe";
+        String exePath = "C:\\Program Files (x86)\\geckodriver-v0.19.1-win64\\geckodriver.exe";
         System.setProperty("webdriver.gecko.driver", exePath);
         String URL1 = "http://elcorteingles.es";
         String URL2 = "http://fnac.es";
+        String URL3 = "https://www.mediamarkt.es";
 
-        DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-        capabilities.setCapability("browser", true);
-        //Crear Driver
-        WebDriver driver = new FirefoxDriver(capabilities);
-        //Abrir url
-        driver.get(URL2);
+        try {
 
-        WebElement hogar = driver.findElement(By.xpath("//a[@href='https://www.fnac.es/pack-experiencia#bl=MMPack"));
+            DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+            capabilities.setCapability("browser", true);
+            //Crear Driver
+            WebDriver driver = new FirefoxDriver(capabilities);
+            //Abrir url
+            driver.get(URL3);
 
+            WebElement categorias = driver.findElement(By.id("navigation__all--categories"));
+            categorias.click();
+
+            WebElement hogar = driver.findElement(By.className("world_hogar-jardin"));
+            hogar.click();
+
+            WebDriverWait waiting = new WebDriverWait(driver, 50);
+
+           WebElement vermas = driver.findElement(By.cssSelector("a[href*='cocina']"));
+            //WebElement vermas = driver.findElement(By.className("link--vermas"));
+            vermas.click();
+
+            WebElement cafeteras = driver.findElement(By.cssSelector("a[href*='cafeteras-cafe]"));
+            cafeteras.click();
+
+
+            driver.quit();
+
+        }catch(Exception exc)
+        {
+            System.out.print(exc);
+        }
 
         /** PASO 1 - Buscar href cafeteras y pulsarlo**/
 
@@ -94,7 +117,7 @@ public class Main extends Application {
         /** PASO 5 - **/
         /** Pulsar Elementos **/
 
-        //driver.quit();
+
     }
 
     /** Esperar a que se cargue **/

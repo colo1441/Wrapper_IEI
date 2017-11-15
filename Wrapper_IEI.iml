@@ -28,5 +28,6 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="selenium-server-standalone-3.7.1" level="project" />
   </component>
 </module>
