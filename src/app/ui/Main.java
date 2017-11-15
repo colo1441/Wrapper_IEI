@@ -1,4 +1,4 @@
-package app;
+package app.ui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +38,7 @@ public class Main extends Application {
     //WebDriver
     public static void Firefox()
     {
-        String exePath = "C:\\Program Files (x86)\\geckodriver-v0.19.1-win64\\geckodriver.exe";
+        String exePath = "/Users/kevin/Temporales";
         System.setProperty("webdriver.gecko.driver", exePath);
         String URL1 = "http://elcorteingles.es";
         String URL2 = "http://fnac.es";
@@ -60,7 +60,10 @@ public class Main extends Application {
             hogar.click();
 
             WebDriverWait waiting = new WebDriverWait(driver, 50);
-            waiting.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a[href*='https://tiendas.mediamarkt.es/cafeteras-cafe']")));
+            /*waiting.until(
+                    ExpectedConditions.presenceOfElementLocated(
+                            By.cssSelector("a[href*='https://tiendas.mediamarkt.es/cafeteras-cafe']")
+                    ));*/
 
             WebElement cafes = driver.findElement(By.cssSelector("a[href*='https://tiendas.mediamarkt.es/cafeteras-cafe']"));
             cafes.click();
