@@ -1,4 +1,4 @@
-package app.ui;
+package app;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +30,7 @@ public class Main extends Application {
     public static void main(String[] args) {
 
         Firefox();
-        //launch(args);
+      //  launch(args);
 
 
     }
@@ -38,7 +38,7 @@ public class Main extends Application {
     //WebDriver
     public static void Firefox()
     {
-        String exePath = "/Users/kevin/Temporales";
+        String exePath = "/Users/kevin/Temporales/geckodriver";
         System.setProperty("webdriver.gecko.driver", exePath);
         String URL1 = "http://elcorteingles.es";
         String URL2 = "http://fnac.es";
@@ -60,10 +60,10 @@ public class Main extends Application {
             hogar.click();
 
             WebDriverWait waiting = new WebDriverWait(driver, 50);
-            /*waiting.until(
+            waiting.until(
                     ExpectedConditions.presenceOfElementLocated(
                             By.cssSelector("a[href*='https://tiendas.mediamarkt.es/cafeteras-cafe']")
-                    ));*/
+                    ));
 
             WebElement cafes = driver.findElement(By.cssSelector("a[href*='https://tiendas.mediamarkt.es/cafeteras-cafe']"));
             cafes.click();
@@ -74,7 +74,6 @@ public class Main extends Application {
             */
 
             //driver.quit();
-
         }catch(Exception exc)
         {
             System.out.print(exc);
