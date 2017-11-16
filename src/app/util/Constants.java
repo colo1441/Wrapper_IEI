@@ -11,6 +11,7 @@ public class Constants {
     public static final String BROWSER = "browser";
     public static final String ATTRIBUTE_HREF = "href";
     public static final String SELECT_ARTICLE_PROMPT = "Seleccionar artículo";
+    public static final String SELECT_BRAND_PROMPT = "Seleccionar marca";
 
 
     public static class MediaMarkt{
