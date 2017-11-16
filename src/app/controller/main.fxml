@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.MainController">
    <children>
       <VBox fx:id="mainVB" alignment="TOP_CENTER" layoutY="20.0" prefHeight="380.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
          <children>
@@ -17,19 +17,25 @@
                <children>
                   <HBox fx:id="combosHB" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <HBox fx:id="articleHB" prefHeight="100.0" prefWidth="342.0">
+                        <VBox fx:id="articleHB" prefHeight="100.0" prefWidth="342.0">
                            <children>
-                              <Label fx:id="articleLabel" text="Artículo" />
-                              <ComboBox fx:id="articleCB" prefWidth="150.0">
+                              <Label fx:id="articleLabel" text="Artículo">
+                                 <VBox.margin>
+                                    <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                 </VBox.margin></Label>
+                              <ComboBox fx:id="cbCategoria" prefHeight="27.0" prefWidth="267.0">
                                  <HBox.margin>
                                     <Insets left="20.0" />
                                  </HBox.margin></ComboBox>
                            </children>
-                        </HBox>
-                        <HBox fx:id="brandHB" prefHeight="100.0" prefWidth="386.0">
+                        </VBox>
+                        <VBox fx:id="brandHB" prefHeight="100.0" prefWidth="386.0">
                            <children>
-                              <Label fx:id="brandLabel" text="Marca" />
-                              <ComboBox fx:id="brandCB" prefWidth="150.0">
+                              <Label fx:id="brandLabel" text="Marca">
+                                 <VBox.margin>
+                                    <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                 </VBox.margin></Label>
+                              <ComboBox fx:id="cbMarca" prefHeight="27.0" prefWidth="264.0">
                                  <HBox.margin>
                                     <Insets left="20.0" />
                                  </HBox.margin></ComboBox>
@@ -38,9 +44,9 @@
                               <Insets />
                            </opaqueInsets>
                            <padding>
-                              <Insets left="50.0" />
+                              <Insets left="15.0" />
                            </padding>
-                        </HBox>
+                        </VBox>
                      </children>
                   </HBox>
                </children>
@@ -62,7 +68,7 @@
                   <Insets left="20.0" />
                </padding>
             </VBox>
-            <Button fx:id="searchBTN" mnemonicParsing="false" text="Buscar" />
+            <Button fx:id="searchBTN" mnemonicParsing="false" prefHeight="40.0" prefWidth="114.0" text="Buscar" />
          </children>
       </VBox>
    </children>
