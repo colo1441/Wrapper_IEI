@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.List;
 
+import static app.util.Constants.ATTRIBUTE_HREF;
 import static app.util.Constants.MediaMarkt.*;
 
 public class MediaMarkt {
@@ -21,7 +22,6 @@ public class MediaMarkt {
     private List<Categoria> categorias;
     private DesiredCapabilities capabilities;
     private WebDriver driver;
-    private boolean marcasVisited;
 
     public MediaMarkt(){
         categorias = new ArrayList<>();
@@ -52,20 +52,31 @@ public class MediaMarkt {
             WebDriverWait waitingCafesPage = new WebDriverWait(driver, 10);
             waitingCafesPage.until(
                     ExpectedConditions.presenceOfElementLocated(
-                            By.id(NAVIGATION_CATEGORIES_CAFE_TYPES)
+                            By.id(WAITING_CATEGORIES_CAFE_TYPES)
                     ));
 
             // Rellenar categorias de cafeteras
-            List<WebElement> elementsCategoriesCafes = (ArrayList<WebElement>)driver.findElements(By.xpath(NAVIGATION_CATEGORIES_CAFE_TYPES_LIST_ELEMENTS));
+            List<WebElement> elementsCategoriesCafes = (ArrayList<WebElement>)driver.findElements(By.xpath(CATEGORIES_CAFE_TYPES_LIST_ELEMENTS));
             if(elementsCategoriesCafes!=null && !elementsCategoriesCafes.isEmpty()) {
+
+                //define elements for navegation between tags
+                WebElement idDivLevel,firstLevel;
+
                 for (WebElement element : elementsCategoriesCafes) {
-                    categorias.add(new Categoria(element.getText(), element));
+                    firstLevel = element.findElement(By.xpath("./descendant::a"));
+                    Categoria categoria = new Categoria(element.getText(), element);
+                    categoria.setSource(Constants.URL_MEDIA_MARKT);
+                    categoria.setUrl(firstLevel.getAttribute(ATTRIBUTE_HREF));
+
+                    System.out.println("Categoria: " +categoria);
+
+                    categorias.add(categoria);
                 }
             } else {
                 System.err.println("No hay categorías");
             }
 
-            //driver.quit();
+            driver.quit();
         }catch(Exception exc)
         {
             System.out.print(exc);
@@ -82,40 +93,38 @@ public class MediaMarkt {
         driver.findElement(By.id(Constants.MediaMarkt.CLOSE_COOKIES)).click();
     }
 
-    public List<Marca> getMarcasBySelection(WebElement element) {
+    public List<Marca> getMarcasBySelection(Categoria categoria) {
         ArrayList<Marca> marcas = new ArrayList<>();
-        if(!marcasVisited) {
-            marcasVisited = true;
-            //  driver = new FirefoxDriver(capabilities);
-            //  driver.get(Constants.URL_MEDIA_MARKT);
-
-            System.out.println("WEBELEMENT: " +
-                    element);
-            element.click();
+        if(categoria.getListMarcas()==null) {
+            driver = new FirefoxDriver(capabilities);
+            driver.get(categoria.getUrl());
 
             WebDriverWait waitingCafesPage = new WebDriverWait(driver, 10);
             waitingCafesPage.until(
                     ExpectedConditions.presenceOfElementLocated(
-                            By.id("brandsFilterElements")
+                            By.id(WAITING_CAFE_MARCAS_LIST_ELEMENTS)
                     ));
 
             // Rellenar marcas de cafeteras
-            List<WebElement> elementsMarcasCafes = (ArrayList<WebElement>) driver.findElements(By.xpath("//*[contains(@class, 'filterElement brandsFilterElement')]"));
+            List<WebElement> elementsMarcasCafes = (ArrayList<WebElement>) driver.findElements(By.xpath(CAFE_MARCAS_LIST_ELEMENTS));
             if (elementsMarcasCafes != null && !elementsMarcasCafes.isEmpty()) {
                 for (WebElement marcaElement : elementsMarcasCafes) {
                     if (!marcaElement.getText().equalsIgnoreCase("")) {
-                        System.out.println("MARCAELEMENT " + marcaElement.getText());
-                        marcas.add(new Marca(marcaElement.getText(), Constants.URL_MEDIA_MARKT, marcaElement));
+                        Marca marca = new Marca(marcaElement.getText(), marcaElement);
+                        marca.setSource(Constants.URL_MEDIA_MARKT);
+                        marcas.add(marca);
                     }
                 }
+                categoria.setListMarcas(marcas);
             } else {
-                System.err.println("No hay marcas de " + element.getText());
+                System.err.println("No hay marcas de " + categoria.getNombre());
             }
         } else {
+            marcas.addAll(categoria.getListMarcas());
             System.out.println("YA HAS VISITADO ESTA WEB, tienes que salir");
         }
 
-        // driver.quit();
+        driver.quit();
         return marcas;
     }
 

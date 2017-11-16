@@ -2,33 +2,24 @@ package app.model;
 
 import org.openqa.selenium.WebElement;
 
-public class Marca {
-    private String nombre;
+import java.util.List;
+
+public class Marca extends CommonElement {
     private String idCheckbox;
-    private String source;
     private WebElement webElement;
+    private List<Item> listItems;
 
-
-    public Marca(String nombre, String source, WebElement webElement) {
-        this.nombre = nombre;
-        this.source = source;
+    public Marca(String nombre, WebElement webElement) {
+        super(nombre);
         this.webElement = webElement;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getIdCheckbox() {
+        return idCheckbox;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
+    public void setIdCheckbox(String idCheckbox) {
+        this.idCheckbox = idCheckbox;
     }
 
     public WebElement getWebElement() {
@@ -37,10 +28,5 @@ public class Marca {
 
     public void setWebElement(WebElement webElement) {
         this.webElement = webElement;
-    }
-
-    @Override
-    public String toString() {
-        return nombre;
     }
 }

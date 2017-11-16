@@ -2,28 +2,19 @@ package app.model;
 
 import org.openqa.selenium.WebElement;
 
-public class Categoria {
-    private String nombre;
+import java.util.List;
+
+public class Categoria extends CommonElement {
     private WebElement webElement;
+    private List<Marca> listMarcas;
 
-    public Categoria() {
-    }
-
-    public Categoria(String nombre, String url) {
-        this.nombre = nombre;
+    public Categoria(String nombre) {
+        super(nombre);
     }
 
     public Categoria(String nombre, WebElement webElement) {
-        this.nombre = nombre;
+        super(nombre);
         this.webElement = webElement;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public WebElement getWebElement() {
@@ -34,8 +25,11 @@ public class Categoria {
         this.webElement = webElement;
     }
 
-    @Override
-    public String toString() {
-        return nombre;
+    public List<Marca> getListMarcas() {
+        return listMarcas;
+    }
+
+    public void setListMarcas(List<Marca> listMarcas) {
+        this.listMarcas = listMarcas;
     }
 }
