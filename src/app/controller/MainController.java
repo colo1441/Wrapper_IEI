@@ -14,6 +14,7 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -29,7 +30,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        selectMediaMarkt();
+        //selectMediaMarkt();
         selectFNAC();
     }
 
@@ -72,6 +73,21 @@ public class MainController implements Initializable {
         } else {
             cbCategoria.setItems(FXCollections.observableArrayList(fnac.getCategorias()));
         }
+
+        cbCategoria.getSelectionModel().selectedItemProperty().addListener((ChangeListener) (ov, t, t1) -> {
+            if(cbMarca.getItems()!=null)
+                cbMarca.getItems().clear();
+
+            System.out.println("Seleccionado: " + cbCategoria.getSelectionModel().getSelectedItem());
+            cbMarca.setPromptText(SELECT_ARTICLE_PROMPT);
+            FXCollections.observableArrayList(
+                    fnac.getMarcasBySelection(cbCategoria.getSelectionModel().getSelectedItem()));
+            cbMarca.setItems(FXCollections.observableArrayList(
+                    fnac.getMarcasBySelection(cbCategoria.getSelectionModel().getSelectedItem())
+            ));
+        });
+
+
 
     }
 }

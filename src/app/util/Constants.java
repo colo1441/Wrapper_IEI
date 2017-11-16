@@ -2,7 +2,7 @@ package app.util;
 
 public class Constants {
 
-    public static final String DRIVER_GECKO_PATH = "/Users/kevin/Temporales/geckodriver";
+    public static final String DRIVER_GECKO_PATH = "/Users/COLO/Downloads/geckodriver-v0.19.1-win64/geckodriver.exe";
     public static final String WEB_DRIVER_GECKO = "webdriver.gecko.driver";
     public static final String URL_EL_CORTE_INGLES = "http://elcorteingles.es";
     public static final String URL_FNAC = "https://www.fnac.es/Desayuno-y-cafe/s38477";
@@ -23,5 +23,12 @@ public class Constants {
         public static final String CATEGORIES_CAFE_TYPES_LIST_ELEMENTS = "//*[contains(@class, 'categoriesTreeContainer categoriesTreeContainer1 ')]";
         public static final String WAITING_CAFE_MARCAS_LIST_ELEMENTS = "brandsFilterElements";
         public static final String CAFE_MARCAS_LIST_ELEMENTS = "//*[contains(@class, 'filterElement brandsFilterElement')]";
+    }
+
+    public static class Fnac{
+        public static final String CLOSE_COOKIES= "close";
+        public static final String WAITING_CAFE_MARCAS_LIST_ELEMENTS = "Filters.js-SearchFilters";
+        public static final String CAFE_MARCAS_LIST_ELEMENTS = "//*[contains(@class, 'Filters-content')]";
+
     }
 }
