@@ -38,7 +38,7 @@ public class Main extends Application {
     //WebDriver
     public static void Firefox()
     {
-        String exePath = "/Users/kevin/Temporales/geckodriver";
+        String exePath = "C:\\Program Files (x86)\\geckodriver-v0.19.1-win64\\geckodriver.exe";
         System.setProperty("webdriver.gecko.driver", exePath);
         String URL1 = "http://elcorteingles.es";
         String URL2 = "http://fnac.es";
