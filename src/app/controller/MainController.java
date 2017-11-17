@@ -1,16 +1,18 @@
 package app.controller;
 
+import app.Main;
 import app.model.Categoria;
+import app.model.Item;
 import app.model.Marca;
 import app.scrap.Fnac;
 import app.scrap.MediaMarkt;
 import app.util.Constants;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
@@ -38,11 +40,26 @@ public class MainController implements Initializable {
     @FXML
     CheckBox chbFNAC;
 
+    @FXML
+    Button searchBTN;
+
     private MediaMarkt mediaMarkt;
     private boolean clickedMediaMarkt;
 
     private Fnac fnac;
     private boolean clickedFNAC;
+
+    private Marca marcaSelected;
+    private Categoria categoriaSelected;
+    private List<Marca> marcasSelected;
+
+    private Main mainApp;
+
+    public void initStage(Stage primaryStage, Main main) {
+        this.mainApp = main;
+        this.stage = primaryStage;
+        this.marcasSelected = new ArrayList<Marca>();
+    }
 
 
     @Override
@@ -52,6 +69,8 @@ public class MainController implements Initializable {
 
         cbCategoria.setDisable(true);
         cbMarca.setDisable(true);
+        searchBTN.setDisable(true);
+
 
         chbMediaMarkt.selectedProperty().addListener((observable, oldValue, newValue) -> {
 
@@ -109,7 +128,8 @@ public class MainController implements Initializable {
 
         cbCategoria.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(cbCategoria.getItems()!=null && !cbCategoria.getItems().isEmpty()){
-                System.out.println("Seleccionado cbCategoria: " + cbCategoria.getSelectionModel().getSelectedItem());
+                categoriaSelected = cbCategoria.getSelectionModel().getSelectedItem();
+                System.out.println("Seleccionado cbCategoria: " + categoriaSelected );
             }
 
             if(cbCategoria.getSelectionModel().getSelectedItem().getSource().equals(Constants.URL_MEDIA_MARKT)) {
@@ -119,13 +139,34 @@ public class MainController implements Initializable {
             }
 
             cbMarca.setDisable(false);
+            searchBTN.setDisable(false);
+
         });
 
         cbMarca.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(cbMarca.getItems()!=null && !cbMarca.getItems().isEmpty()) {
-                System.out.println("Seleccionado cbMarca: " + cbMarca.getSelectionModel().getSelectedItem().getNombre());
+                marcaSelected = cbMarca.getSelectionModel().getSelectedItem();
+                marcasSelected.add(marcaSelected);
+                System.out.println("Seleccionado cbMarca: " + marcaSelected.getNombre() + " url: " + marcaSelected.getUrl());
             }
 
+        });
+
+        searchBTN.setOnAction(event -> {
+            if(cbMarca.getItems()!=null && !cbMarca.getItems().isEmpty() && marcaSelected!=null ) {
+                //open new window with data
+                System.out.println("MARCA SELECCIONADA, SE BUSCARA POR MARCA: " + marcaSelected);
+                marcasSelected = mediaMarkt.recogerObjetos(marcasSelected);
+                try {
+                    mainApp.initItemsController(marcasSelected);
+                } catch (Exception e) {
+                    System.err.println("Ha ocurrido un error lanzando la pantalla del grid");
+                    e.printStackTrace();
+                }
+            } else {
+                //open the categories page with the cafes and tes brand
+                System.out.println("NO HAY MARCAS SELECCIONADAS, SE BUSCARA POR CATEGORIA: " + categoriaSelected);
+            }
         });
     }
 

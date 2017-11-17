@@ -1,6 +1,8 @@
 package app;
 
+import app.controller.ItemsController;
 import app.controller.MainController;
+import app.model.Marca;
 import app.scrap.MediaMarkt;
 import app.util.Constants;
 import javafx.application.Application;
@@ -8,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -19,6 +22,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class Main extends Application {
@@ -48,8 +52,37 @@ public class Main extends Application {
         Scene scene = new Scene(rootPane);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+
         MainController controller = loader.getController();
-        controller.setPrimaryStage(primaryStage);
+        controller.initStage(primaryStage, this);
+    }
+
+    public void initItemsController(List<Marca> brands) throws Exception{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(ItemsController.class.getResource("items.fxml"));
+
+        String title = "";
+        for(Marca marca : brands){
+            if(title.isEmpty()){
+               title+=marca.getNombre();
+            } else {
+                title+=", "+marca.getNombre();
+            }
+        }
+        AnchorPane page = (AnchorPane)loader.load();
+
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Marcas: " + title);
+        dialogStage.initModality(Modality.APPLICATION_MODAL);
+        dialogStage.initOwner(primaryStage);
+
+        Scene scene = new Scene(page);
+        ItemsController controller = loader.getController();
+        controller.initStage(primaryStage, this, brands);
+
+        dialogStage.setScene(scene);
+        dialogStage.show();
     }
 }
 

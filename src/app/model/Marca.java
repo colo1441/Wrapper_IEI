@@ -29,4 +29,12 @@ public class Marca extends CommonElement {
     public void setWebElement(WebElement webElement) {
         this.webElement = webElement;
     }
+
+    public List<Item> getListItems() {
+        return listItems;
+    }
+
+    public void setListItems(List<Item> listItems) {
+        this.listItems = listItems;
+    }
 }
