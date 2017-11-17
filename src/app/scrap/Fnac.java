@@ -38,7 +38,7 @@ public class Fnac {
         //Crear Driver
         WebDriver driver = new FirefoxDriver(capabilities);
         driver = new FirefoxDriver(capabilities);
-        driver.get("https://www.fnac.es/n97713/Desayuno-y-cafe/Cafeteras-monodosis");
+        driver.get("https://www.fnac.es/n97714/Desayuno-y-cafe/Cafeteras-expreso-y-automaticas");
 
         WebElement menos = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[1]/i"));
         menos.click();
@@ -50,11 +50,20 @@ public class Fnac {
         WebElement menos2 = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[3]/i"));
         menos2.click();
 
-        WebElement menos3 = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[4]/i"));
-        menos3.click();
+        driver.findElement(By.id("htmlPopinCookies")).findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/div[2]/button")).click();
 
         /* Scroll up */
-        jse.executeScript("scroll(0, -250);");
+        //jse.executeScript("scroll(0, -50);");
+
+        WebDriverWait waiting = new WebDriverWait(driver, 20);
+        waiting.until(
+                ExpectedConditions.presenceOfElementLocated(
+                        By.className("js-FiltersContainer")
+                ));
+
+        driver.findElement(By.className("js-FiltersContainer")).findElement(By.tagName("i")).click();;
+
+        waiting = new WebDriverWait(driver, 10);
 
         //if(categoria.getListMarcas()==null){
             // Rellenar marcas de cafeteras
@@ -135,6 +144,8 @@ public class Fnac {
             driver = new FirefoxDriver(capabilities);
             driver.get(categoria.getUrl());
 
+
+
             /* Ocultar menus que no nos interesan */
             WebElement menos = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[1]/i"));
             menos.click();
@@ -162,10 +173,10 @@ public class Fnac {
                         marcas.add(marca);
                     }
                 }
-                //categoria.setListMarcas(marcas);
+                categoria.setListMarcas(marcas);
                 System.out.println(elementsMarcasCafes.toString());
             } else {
-                //System.err.println("No hay marcas de " + categoria.getNombre());
+                System.err.println("No hay marcas de " + categoria.getNombre());
             }
         } else {
             marcas.addAll(categoria.getListMarcas());
@@ -179,7 +190,7 @@ public class Fnac {
 
     public static void closeCookies() {
         //CERRAR COOKIES
-        driver.findElement(By.className(Constants.Fnac.CLOSE_COOKIES)).click();
+        driver.findElement(By.cssSelector(Constants.Fnac.CLOSE_COOKIES)).click();
     }
 }
 
