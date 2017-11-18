@@ -25,7 +25,7 @@ public class MediaMarkt {
     private List<Categoria> categorias;
     private DesiredCapabilities capabilities;
     private WebDriver driver;
-    private boolean haveMore = true;
+    private boolean haveMore;
 
     public MediaMarkt(){
         categorias = new ArrayList<>();
@@ -102,7 +102,7 @@ public class MediaMarkt {
                         firstLevel = marcaElement.findElement(By.xpath(DESCENDANT_A));
                         if (!marcaElement.getText().equalsIgnoreCase("")) {
                             Marca marca = new Marca(marcaElement.getText(), marcaElement);
-                            marca.setSource(Constants.URL_MEDIA_MARKT);
+                            marca.setSource(Constants.MEDIA_MARKT);
                             marca.setUrl(firstLevel.getAttribute(ATTRIBUTE_HREF));
                             marcas.add(marca);
 
@@ -130,6 +130,7 @@ public class MediaMarkt {
         Iterator<Marca> it = list.iterator();
         Marca marcaIterate = null;
         while(it.hasNext()){
+            haveMore = true;
             marcaIterate = it.next();
             marcaIterate.setListItems(new ArrayList<>());
             capabilities = DesiredCapabilities.firefox();
@@ -151,7 +152,7 @@ public class MediaMarkt {
                 for (WebElement objeto : objetos) {
 
                     String nombre = objeto.findElement(By.xpath("./descendant::a[@class='productName product10Name']")).getText();
-                    String precio = objeto.findElement(By.xpath("./descendant::span[@class= 'bigpricesrc']")).getText();
+                    String precio = objeto.findElement(By.xpath("./descendant::span[@class= 'bigpricesrc']")).getText() + "€";
                     String descripcion = objeto.findElement(By.className("product10ShortDescription")).getText();
                     String url = objeto.findElement(By.xpath("./descendant::a[@class = 'productName product10Name']")).getAttribute(Constants.ATTRIBUTE_HREF);
 

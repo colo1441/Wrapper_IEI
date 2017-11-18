@@ -57,11 +57,12 @@ public class ItemsController implements Initializable {
     }
 
     public void initStage(Stage primaryStage, Main main, List<Marca> brands) {
+        System.out.println("LISTA DE MARCAS A PINTAR EN GRID: " + brands.size());
         this.listBrands = brands;
         this.primaryStage = primaryStage;
         this.mainApp = main;
         listItemsObservable = FXCollections.observableArrayList();
-        fillTotalItemsOfBrands(listBrands);
+        fillTotalItemsOfBrands(brands);
         if(mainApp==null){
             mainApp = new Main();
         }

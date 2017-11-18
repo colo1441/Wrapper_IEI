@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import org.controlsfx.control.CheckComboBox?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.MainController">
    <children>
       <VBox fx:id="mainVB" alignment="TOP_CENTER" layoutY="20.0" prefHeight="380.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
@@ -36,11 +37,7 @@
                                  <VBox.margin>
                                     <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                  </VBox.margin></Label>
-                              <ComboBox fx:id="cbMarca" prefHeight="27.0" prefWidth="264.0">
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin></ComboBox>
-                              <ChoiceBox fx:id="choiceBoxMarca" prefHeight="27.0" prefWidth="264.0" />
+                               <CheckComboBox fx:id="chbComboMarca" prefHeight="27.0" prefWidth="264.0" />
                            </children>
                            <opaqueInsets>
                               <Insets />

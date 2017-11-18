@@ -1,13 +1,11 @@
 package app.scrap;
 
 import app.model.Categoria;
+import app.model.Item;
 import app.model.Marca;
 import app.model.Web;
 import app.util.Constants;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -15,10 +13,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static app.util.Constants.ATTRIBUTE_HREF;
 import static app.util.Constants.BROWSER;
+import static app.util.Constants.FNAC;
 import static app.util.Constants.Fnac.CAFE_MARCAS_LIST_ELEMENTS;
 
 public class Fnac {
@@ -26,69 +26,7 @@ public class Fnac {
     private List<Categoria> categorias;
     private DesiredCapabilities capabilities;
     private static WebDriver driver;
-
-    public static void main(String[] args) {
-
-        ArrayList<Marca> marcas = new ArrayList<>();
-        DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-        capabilities.setCapability(BROWSER, true);
-        //Crear Driver
-        WebDriver driver = new FirefoxDriver(capabilities);
-        driver = new FirefoxDriver(capabilities);
-        driver.get("https://www.fnac.es/n97714/Desayuno-y-cafe/Cafeteras-expreso-y-automaticas");
-
-        WebElement menos = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[1]/i"));
-        menos.click();
-
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-        /* Scroll Down*/
-        jse.executeScript("scroll(0, 250);");
-
-        WebElement menos2 = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[3]/i"));
-        menos2.click();
-
-        driver.findElement(By.id("htmlPopinCookies")).findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/div[2]/button")).click();
-
-        /* Scroll up */
-        //jse.executeScript("scroll(0, -50);");
-
-        WebDriverWait waiting = new WebDriverWait(driver, 20);
-        waiting.until(
-                ExpectedConditions.presenceOfElementLocated(
-                        By.className("js-FiltersContainer")
-                ));
-
-        driver.findElement(By.className("js-FiltersContainer")).findElement(By.tagName("i")).click();;
-
-        waiting = new WebDriverWait(driver, 10);
-
-        //if(categoria.getListMarcas()==null){
-        // Rellenar marcas de cafeteras
-        List<WebElement> elementsMarcasCafes = driver.findElements(By.className("Filters-choiceTxt"));
-        if(elementsMarcasCafes!=null && !elementsMarcasCafes.isEmpty()) {
-            for (WebElement marcaElement : elementsMarcasCafes) {
-                if (!marcaElement.getText().equalsIgnoreCase("")) {
-                    Marca marca = new Marca(marcaElement.getText(), marcaElement);
-                    marca.setSource(Constants.URL_FNAC);
-                    marcas.add(marca);
-                    System.out.println(marca);
-                }
-            }
-            //categoria.setListMarcas(marcas);
-
-        } else {
-            //System.err.println("No hay marcas de " + categoria.getNombre());
-        }
-            /*} else {
-                //marcas.addAll(categoria.getListMarcas());
-                System.out.println("YA HAS VISITADO ESTA WEB, tienes que salir");
-            }*/
-
-        //driver.quit();
-        //return marcas;
-
-    }
-
+    boolean more;
 
     public Fnac() {
         try {
@@ -144,31 +82,45 @@ public class Fnac {
 
 
 
-            /* Ocultar menus que no nos interesan */
-            WebElement menos = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[1]/i"));
-            menos.click();
+           /* Ocultar menus que no nos interesan */
+            // WebElement menos = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[1]/i"));
+            // menos.click();
 
-            JavascriptExecutor jse = (JavascriptExecutor)driver;
+            // JavascriptExecutor jse = (JavascriptExecutor)driver;
             /* Scroll Up */
-            jse.executeScript("scroll(0, 250);");
+            // jse.executeScript("scroll(0, 250);");
 
-            WebElement menos2 = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[3]/i"));
-            menos2.click();
+            //- WebElement menos2 = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[3]/i"));
+            // menos2.click();
 
-            WebElement menos3 = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[4]/i"));
-            menos3.click();
+            // WebElement menos3 = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[4]/i"));
+            // menos3.click();
 
             /* Scroll Down */
-            jse.executeScript("scroll(0, -250);");
+            // jse.executeScript("scroll(0, -250);");
 
             // Rellenar marcas de cafeteras
-            List<WebElement> elementsMarcasCafes = driver.findElements(By.className("Filters-choiceTxt"));
-            if(elementsMarcasCafes!=null && !elementsMarcasCafes.isEmpty()) {
-                for (WebElement marcaElement : elementsMarcasCafes) {
+            try {
+                driver.findElement(By.xpath("./descendant::button[@class='toggleFilters js-toggleFilters']")).click();
+            }catch (Exception e){
+
+                System.out.println("No hay botton ver mas, motivo: " + e.getLocalizedMessage());
+            }
+
+
+            WebElement elementsMarcasCafes = driver.findElement(By.cssSelector("div.js-FiltersContainer:nth-child(4) > div:nth-child(1)"));
+            List<WebElement> elementsCafe = elementsMarcasCafes.findElements(By.xpath("./descendant::a[@class = 'Filters-choice  isActive']"));
+            if(elementsCafe!=null && !elementsCafe.isEmpty()) {
+                int i = 1;
+                for (WebElement marcaElement : elementsCafe) {
                     if (!marcaElement.getText().equalsIgnoreCase("")) {
                         Marca marca = new Marca(marcaElement.getText(), marcaElement);
-                        marca.setSource(Constants.URL_FNAC);
+                        String url2 = marcaElement.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/div[2]/div/a["+i+"]")).getAttribute("data-filter");
+                        System.out.println(url2);
+                        marca.setUrl(categoria.getUrl()+ "?SFilt=" +url2);
+                        marca.setSource(Constants.FNAC);
                         marcas.add(marca);
+                        i++;
                     }
                 }
                 categoria.setListMarcas(marcas);
@@ -190,5 +142,70 @@ public class Fnac {
         //CERRAR COOKIES
         driver.findElement(By.cssSelector(Constants.Fnac.CLOSE_COOKIES)).click();
     }
-}
 
+    public List<Marca> recogerObjetos(List<Marca> list) {
+        System.out.println("LISTA RCIBIDA: " + list.size());
+        try {
+            Iterator<Marca> it = list.iterator();
+            Marca marcaIterate = null;
+            while (it.hasNext()) {
+                more = true;
+                marcaIterate = it.next();
+                marcaIterate.setListItems(new ArrayList<>());
+                capabilities = DesiredCapabilities.firefox();
+                capabilities.setCapability(Constants.BROWSER, true);
+                driver = new FirefoxDriver(capabilities);
+                System.out.println("URL_MARCA: ---> " + marcaIterate.getUrl());
+                driver.get(marcaIterate.getUrl());
+
+                while (more) {
+
+                    List<WebElement> objetos = driver.findElements(By.xpath("./descendant::li[@class = 'clearfix Article-item']"));
+                    for (WebElement objeto : objetos) {
+
+                        String nombre = objeto.findElement(By.xpath("./descendant::a[@class='js-minifa-title']")).getText();
+                        String precio = objeto.findElement(By.className("userPrice")).getText();
+                        String description = "No disponible";
+                        String url = objeto.findElement(By.xpath("./descendant::a[@class = 'js-minifa-title']")).getAttribute(Constants.ATTRIBUTE_HREF);
+                        System.out.println("Objeto ->" + nombre);
+                        System.out.println("Precio ->" + precio);
+                        System.out.println("Descripcion ->" + description);
+                        System.out.println("URL ->" + url);
+
+                        marcaIterate.getListItems().add(new Item(nombre, description, marcaIterate.getNombre(), precio, FNAC, url));
+
+                    }
+                    cambiarPagina(driver);
+                }
+
+            }
+        }catch (Exception e){
+            System.err.println(e.getLocalizedMessage());
+        }
+
+        return list;
+    }
+
+    private void cambiarPagina(WebDriver driver) {
+
+
+        try {
+            String BTSiguientePagina = driver.findElement(By.cssSelector(".nextLevel > a:nth-child(1)")).getAttribute(ATTRIBUTE_HREF);
+
+            System.out.println("URL de la siguiente pagina ->"+BTSiguientePagina);
+            if(BTSiguientePagina==null){
+                more = false;
+            }else {
+                driver.get(BTSiguientePagina);
+            }
+            //driver.quit();
+        } catch (NoSuchElementException e) {
+            System.out.println("Fallo al recolectar la url de la pagina siguiente");
+            more = false;
+            driver.quit();
+
+        }
+
+
+    }
+}

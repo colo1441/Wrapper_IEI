@@ -2,14 +2,14 @@ package app.controller;
 
 import app.Main;
 import app.model.Categoria;
-import app.model.Item;
 import app.model.Marca;
 import app.scrap.Fnac;
 import app.scrap.MediaMarkt;
 import app.util.Constants;
+import com.sun.tools.internal.jxc.ap.Const;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,8 +17,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import org.controlsfx.control.CheckComboBox;
 
-import javax.print.DocFlavor;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,19 +33,17 @@ public class MainController implements Initializable {
     ComboBox<Categoria> cbCategoria;
 
     @FXML
-    ComboBox<Marca> cbMarca;
-
-    @FXML
-    ChoiceBox<Marca> choiceBoxMarca;
-
-    @FXML
     CheckBox chbMediaMarkt;
+
+    @FXML
+    CheckComboBox<Marca> chbComboMarca;
 
     @FXML
     CheckBox chbFNAC;
 
     @FXML
     Button searchBTN;
+
 
     private MediaMarkt mediaMarkt;
     private boolean clickedMediaMarkt;
@@ -69,12 +67,10 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cbCategoria.setPromptText(SELECT_ARTICLE_PROMPT);
-        cbMarca.setPromptText(SELECT_BRAND_PROMPT);
 
         cbCategoria.setDisable(true);
-        cbMarca.setDisable(true);
-        choiceBoxMarca.setDisable(true);
-        searchBTN.setDisable(true);
+        chbComboMarca.setDisable(true);
+         searchBTN.setDisable(true);
 
 
         chbMediaMarkt.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -82,8 +78,10 @@ public class MainController implements Initializable {
             if(cbCategoria.getItems()!=null)
                 cbCategoria.getItems().clear();
 
-            if(cbMarca.getItems()!=null)
-                cbMarca.getItems().clear();
+            if(chbComboMarca.getItems()!=null) {
+                chbComboMarca.getCheckModel().clearChecks();
+                chbComboMarca.getItems().clear();
+            }
 
             if(newValue){
                 clickedMediaMarkt = newValue;
@@ -108,8 +106,10 @@ public class MainController implements Initializable {
             if(cbCategoria.getItems()!=null)
                 cbCategoria.getItems().clear();
 
-            if(cbMarca.getItems()!=null)
-                cbMarca.getItems().clear();
+            if(chbComboMarca.getItems()!=null) {
+                chbComboMarca.getCheckModel().clearChecks();
+                chbComboMarca.getItems().clear();
+            }
 
             if(newValue){
                 clickedFNAC = newValue;
@@ -137,44 +137,88 @@ public class MainController implements Initializable {
                 System.out.println("Seleccionado cbCategoria: " + categoriaSelected  + " url: " + categoriaSelected.getUrl());
 
                 if(categoriaSelected!=null && categoriaSelected.getSource().equals(Constants.URL_MEDIA_MARKT)) {
-                    cbMarca.setItems(FXCollections.observableArrayList(mediaMarkt.getMarcasBySelection(cbCategoria.getSelectionModel().getSelectedItem())));
-                    choiceBoxMarca.setItems(FXCollections.observableArrayList(mediaMarkt.getMarcasBySelection(cbCategoria.getSelectionModel().getSelectedItem())));
-                    choiceBoxMarca.setDisable(false);
-                }else if(categoriaSelected!=null && categoriaSelected.getSource().equals(Constants.URL_FNAC)) {
-                    cbMarca.setItems(FXCollections.observableArrayList(
-                            fnac.getMarcasBySelection(cbCategoria.getSelectionModel().getSelectedItem())));
+                    ObservableList<Marca> marcaObservableList = FXCollections.observableArrayList(mediaMarkt.getMarcasBySelection(cbCategoria.getSelectionModel().getSelectedItem()));
+                    chbComboMarca.getCheckModel().clearChecks();
+                    chbComboMarca.getItems().clear();
+                    chbComboMarca.getItems().addAll(marcaObservableList);
+                  }else if(categoriaSelected!=null && categoriaSelected.getSource().equals(Constants.URL_FNAC)) {
+                    ObservableList<Marca> marcaObservableList = FXCollections.observableArrayList(fnac.getMarcasBySelection(cbCategoria.getSelectionModel().getSelectedItem()));
+                    chbComboMarca.getCheckModel().clearChecks();
+                    chbComboMarca.getItems().clear();
+                    chbComboMarca.getItems().addAll(marcaObservableList);
                 }
 
-                cbMarca.setDisable(false);
+                chbComboMarca.setDisable(false);
                 searchBTN.setDisable(false);
             }
 
 
         });
 
-        cbMarca.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if(cbMarca.getItems()!=null && !cbMarca.getItems().isEmpty()) {
-                marcaSelected = cbMarca.getSelectionModel().getSelectedItem();
-                marcasSelected.add(marcaSelected);
-                System.out.println("Seleccionado cbMarca: " + marcaSelected.getNombre() + " url: " + marcaSelected.getUrl());
-            }
-
+        chbComboMarca.getCheckModel().getCheckedItems().addListener((ListChangeListener<Marca>) c -> {
+            marcasSelected.clear();
+            marcasSelected.addAll(chbComboMarca.getCheckModel().getCheckedItems());
         });
 
+
         searchBTN.setOnAction(event -> {
-            if(cbMarca.getItems()!=null && !cbMarca.getItems().isEmpty() && marcaSelected!=null ) {
-                //open new window with data
-                System.out.println("MARCA SELECCIONADA, SE BUSCARA POR MARCA: " + marcaSelected);
-                marcasSelected = mediaMarkt.recogerObjetos(marcasSelected);
-                try {
+            try {
+
+                if(marcasSelected!=null && !marcasSelected.isEmpty()) {
+                    //open new window with data
+                    System.out.println("MARCA SELECCIONADA, SE BUSCARA POR MARCA: " + marcaSelected);
+                    List<Marca> listMarcasMediamarkt = new ArrayList<>();
+                    List<Marca> listMarcasFNAC = new ArrayList<>();
+                    for(Marca marca : marcasSelected){
+                        if(marca.getSource().equalsIgnoreCase(Constants.MEDIA_MARKT)){
+                            listMarcasMediamarkt.add(marca);
+                        } else if(marca.getSource().equalsIgnoreCase(Constants.FNAC)){
+                            listMarcasFNAC.add(marca);
+                        }
+                    }
+                    List<Marca> listTotalSearch = new ArrayList<>();
+
+                    if(!listMarcasMediamarkt.isEmpty())
+                        listTotalSearch.addAll(mediaMarkt.recogerObjetos(listMarcasMediamarkt));
+                    if(!listMarcasFNAC.isEmpty())
+                        listTotalSearch.addAll(fnac.recogerObjetos(listMarcasFNAC));
+
+                    marcasSelected.clear();
+                    marcasSelected.addAll(listTotalSearch);
                     mainApp.initItemsController(marcasSelected);
-                } catch (Exception e) {
-                    System.err.println("Ha ocurrido un error lanzando la pantalla del grid");
-                    e.printStackTrace();
+
+                } else {
+                    //open the categories page with the cafes and tes brand
+                    System.out.println("NO HAY MARCAS SELECCIONADAS, SE BUSCARA POR CATEGORIA: " + categoriaSelected);
+                    //marcasSelected = mediaMarkt.recogerObjetos(categoriaSelected.getListMarcas());
+
+
+                    List<Marca> listMarcasMediamarkt = new ArrayList<>();
+                    List<Marca> listMarcasFNAC = new ArrayList<>();
+                    for(Marca marca : categoriaSelected.getListMarcas()){
+                        if(marca.getSource().equalsIgnoreCase(Constants.MEDIA_MARKT)){
+                            listMarcasMediamarkt.add(marca);
+                        } else if(marca.getSource().equalsIgnoreCase(Constants.FNAC)){
+                            listMarcasFNAC.add(marca);
+                        }
+                    }
+                    List<Marca> listTotalSearch = new ArrayList<>();
+
+                    if(!listMarcasMediamarkt.isEmpty())
+                        listTotalSearch.addAll(mediaMarkt.recogerObjetos(listMarcasMediamarkt));
+                    if(!listMarcasFNAC.isEmpty())
+                        listTotalSearch.addAll(fnac.recogerObjetos(listMarcasFNAC));
+
+
+                    categoriaSelected.getListMarcas().clear();
+                    categoriaSelected.setListMarcas(listTotalSearch);
+                    if(!categoriaSelected.getListMarcas().isEmpty())
+                        mainApp.initItemsController(categoriaSelected.getListMarcas());
                 }
-            } else {
-                //open the categories page with the cafes and tes brand
-                System.out.println("NO HAY MARCAS SELECCIONADAS, SE BUSCARA POR CATEGORIA: " + categoriaSelected);
+
+            } catch (Exception e) {
+                System.err.println("Ha ocurrido un error lanzando la pantalla del grid");
+                e.printStackTrace();
             }
         });
     }
