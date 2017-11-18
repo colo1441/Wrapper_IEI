@@ -134,7 +134,7 @@ public class MainController implements Initializable {
         cbCategoria.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(cbCategoria.getItems()!=null && !cbCategoria.getItems().isEmpty()){
                 categoriaSelected = cbCategoria.getSelectionModel().getSelectedItem();
-                System.out.println("Seleccionado cbCategoria: " + categoriaSelected  + " source: " + categoriaSelected.getSource());
+                System.out.println("Seleccionado cbCategoria: " + categoriaSelected  + " url: " + categoriaSelected.getUrl());
 
                 if(categoriaSelected!=null && categoriaSelected.getSource().equals(Constants.URL_MEDIA_MARKT)) {
                     cbMarca.setItems(FXCollections.observableArrayList(mediaMarkt.getMarcasBySelection(cbCategoria.getSelectionModel().getSelectedItem())));

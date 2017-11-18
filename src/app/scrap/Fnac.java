@@ -94,7 +94,7 @@ public class Fnac {
         try {
             categorias = new ArrayList<>();
 
-            DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+            capabilities = DesiredCapabilities.firefox();
             capabilities.setCapability(BROWSER, true);
             //Crear Driver
             WebDriver driver = new FirefoxDriver(capabilities);
@@ -118,13 +118,13 @@ public class Fnac {
                         Categoria categoria = new Categoria(tipo.getText());
                         categoria.setUrl(tipo.getAttribute(ATTRIBUTE_HREF));
                         categoria.setWebElement(tipo);
+                        categoria.setSource(Constants.URL_FNAC);
                         categorias.add(categoria);
                     }
                 }
             } else {
 
             }
-
             driver.quit();
         } catch (Exception exc) {
             System.out.print(exc);
@@ -139,6 +139,7 @@ public class Fnac {
         ArrayList<Marca> marcas = new ArrayList<>();
         if(categoria.getListMarcas()==null){
             driver = new FirefoxDriver(capabilities);
+            System.out.println("URL DE FNAC CATETORIA : " + categoria.getUrl());
             driver.get(categoria.getUrl());
 
 
