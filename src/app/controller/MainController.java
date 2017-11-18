@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
@@ -33,6 +34,9 @@ public class MainController implements Initializable {
 
     @FXML
     ComboBox<Marca> cbMarca;
+
+    @FXML
+    ChoiceBox<Marca> choiceBoxMarca;
 
     @FXML
     CheckBox chbMediaMarkt;
@@ -69,6 +73,7 @@ public class MainController implements Initializable {
 
         cbCategoria.setDisable(true);
         cbMarca.setDisable(true);
+        choiceBoxMarca.setDisable(true);
         searchBTN.setDisable(true);
 
 
@@ -129,17 +134,21 @@ public class MainController implements Initializable {
         cbCategoria.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(cbCategoria.getItems()!=null && !cbCategoria.getItems().isEmpty()){
                 categoriaSelected = cbCategoria.getSelectionModel().getSelectedItem();
-                System.out.println("Seleccionado cbCategoria: " + categoriaSelected );
+                System.out.println("Seleccionado cbCategoria: " + categoriaSelected  + " source: " + categoriaSelected.getSource());
+
+                if(categoriaSelected!=null && categoriaSelected.getSource().equals(Constants.URL_MEDIA_MARKT)) {
+                    cbMarca.setItems(FXCollections.observableArrayList(mediaMarkt.getMarcasBySelection(cbCategoria.getSelectionModel().getSelectedItem())));
+                    choiceBoxMarca.setItems(FXCollections.observableArrayList(mediaMarkt.getMarcasBySelection(cbCategoria.getSelectionModel().getSelectedItem())));
+                    choiceBoxMarca.setDisable(false);
+                }else if(categoriaSelected!=null && categoriaSelected.getSource().equals(Constants.URL_FNAC)) {
+                    cbMarca.setItems(FXCollections.observableArrayList(
+                            fnac.getMarcasBySelection(cbCategoria.getSelectionModel().getSelectedItem())));
+                }
+
+                cbMarca.setDisable(false);
+                searchBTN.setDisable(false);
             }
 
-            if(cbCategoria.getSelectionModel().getSelectedItem().getSource().equals(Constants.URL_MEDIA_MARKT)) {
-                cbMarca.setItems(FXCollections.observableArrayList(mediaMarkt.getMarcasBySelection(cbCategoria.getSelectionModel().getSelectedItem())));
-            }else if(cbCategoria.getSelectionModel().getSelectedItem().getSource().equals(Constants.URL_FNAC)) {
-                //cbMarca.setItems(FXCollections.observableArrayList(fnac.getMarcasBySelection(cbCategoria.getSelectionModel().getSelectedItem())));
-            }
-
-            cbMarca.setDisable(false);
-            searchBTN.setDisable(false);
 
         });
 

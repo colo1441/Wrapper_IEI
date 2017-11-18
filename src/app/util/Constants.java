@@ -22,4 +22,11 @@ public class Constants {
         public static final String WAITING_CAFE_MARCAS_LIST_ELEMENTS = "brandsFilterElements";
         public static final String CAFE_MARCAS_LIST_ELEMENTS = "//*[contains(@class, 'filterElement brandsFilterElement')]";
     }
+
+    public static class Fnac{
+        public static final String CLOSE_COOKIES= "i.icon:nth-child(3)";
+        public static final String WAITING_CAFE_MARCAS_LIST_ELEMENTS = "Filters.js-SearchFilters";
+        public static final String CAFE_MARCAS_LIST_ELEMENTS = "//*[contains(@class, 'Filters-content')]";
+
+    }
 }
