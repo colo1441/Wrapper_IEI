@@ -1,12 +1,12 @@
-package app.model;
+package app.object;
 
-public class Item extends CommonElement {
+public class Cafetera extends Base {
 
     private String description;
     private String price;
     private String brand;
 
-    public Item(String name, String description, String brand, String price, String sourceURL, String url) {
+    public Cafetera(String name, String description, String brand, String price, String sourceURL, String url) {
         super(name);
         this.description = description;
         this.brand=brand;

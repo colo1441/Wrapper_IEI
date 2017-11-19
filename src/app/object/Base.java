@@ -1,16 +1,16 @@
-package app.model;
+package app.object;
 
-public class CommonElement {
+public class Base {
     private String id;
     private String nombre;
     private String source;
     private String url;
 
-    public CommonElement(String nombre) {
+    public Base(String nombre) {
         this.nombre = nombre;
     }
 
-    public CommonElement(String id, String nombre, String source, String url) {
+    public Base(String id, String nombre, String source, String url) {
         this.id = id;
         this.nombre = nombre;
         this.source = source;

@@ -1,12 +1,10 @@
 package app.controller;
 
-import app.Main;
-import app.model.Categoria;
-import app.model.Marca;
-import app.scrap.Fnac;
-import app.scrap.MediaMarkt;
+import app.object.Categoria;
+import app.object.Marca;
+import app.web.Fnac;
+import app.web.MediaMarkt;
 import app.util.Constants;
-import com.sun.tools.internal.jxc.ap.Const;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -14,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckComboBox;
@@ -25,7 +22,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import static app.util.Constants.SELECT_ARTICLE_PROMPT;
-import static app.util.Constants.SELECT_BRAND_PROMPT;
 
 public class MainController implements Initializable {
     private Stage stage;
@@ -53,14 +49,14 @@ public class MainController implements Initializable {
 
     private Marca marcaSelected;
     private Categoria categoriaSelected;
-    private List<Marca> marcasSelected;
+    private List<Marca> listMarcasSelected;
 
     private Main mainApp;
 
     public void initStage(Stage primaryStage, Main main) {
         this.mainApp = main;
         this.stage = primaryStage;
-        this.marcasSelected = new ArrayList<Marca>();
+        this.listMarcasSelected = new ArrayList<Marca>();
     }
 
 
@@ -81,15 +77,21 @@ public class MainController implements Initializable {
             if(chbComboMarca.getItems()!=null) {
                 chbComboMarca.getCheckModel().clearChecks();
                 chbComboMarca.getItems().clear();
+                chbComboMarca.setDisable(true);
+                searchBTN.setDisable(true);
             }
 
             if(newValue){
-                clickedMediaMarkt = newValue;
+                clickedMediaMarkt = true;
                 selectMediaMarkt();
                 cbCategoria.setDisable(false);
 
             } else {
-                clickedMediaMarkt = !newValue;
+                clickedMediaMarkt = false;
+                if(!clickedFNAC){
+                    cbCategoria.getItems().clear();
+                    cbCategoria.setDisable(true);
+                }
             }
 
             if(clickedFNAC){
@@ -109,15 +111,23 @@ public class MainController implements Initializable {
             if(chbComboMarca.getItems()!=null) {
                 chbComboMarca.getCheckModel().clearChecks();
                 chbComboMarca.getItems().clear();
+                chbComboMarca.setDisable(true);
+                searchBTN.setDisable(true);
             }
 
             if(newValue){
-                clickedFNAC = newValue;
+                clickedFNAC = true;
                 selectFNAC();
                 cbCategoria.setDisable(false);
 
             } else {
-                clickedFNAC = !newValue;
+                clickedFNAC = false;
+                //limpiar todo lo que tenga que ver con fnac
+                if(!clickedMediaMarkt){
+                    cbCategoria.getItems().clear();
+                    cbCategoria.setDisable(true);
+                }
+
             }
 
             if(clickedMediaMarkt){
@@ -156,20 +166,20 @@ public class MainController implements Initializable {
         });
 
         chbComboMarca.getCheckModel().getCheckedItems().addListener((ListChangeListener<Marca>) c -> {
-            marcasSelected.clear();
-            marcasSelected.addAll(chbComboMarca.getCheckModel().getCheckedItems());
+            listMarcasSelected.clear();
+            listMarcasSelected.addAll(chbComboMarca.getCheckModel().getCheckedItems());
         });
 
 
         searchBTN.setOnAction(event -> {
             try {
 
-                if(marcasSelected!=null && !marcasSelected.isEmpty()) {
+                if(listMarcasSelected !=null && !listMarcasSelected.isEmpty()) {
                     //open new window with data
                     System.out.println("MARCA SELECCIONADA, SE BUSCARA POR MARCA: " + marcaSelected);
                     List<Marca> listMarcasMediamarkt = new ArrayList<>();
                     List<Marca> listMarcasFNAC = new ArrayList<>();
-                    for(Marca marca : marcasSelected){
+                    for(Marca marca : listMarcasSelected){
                         if(marca.getSource().equalsIgnoreCase(Constants.MEDIA_MARKT)){
                             listMarcasMediamarkt.add(marca);
                         } else if(marca.getSource().equalsIgnoreCase(Constants.FNAC)){
@@ -183,14 +193,14 @@ public class MainController implements Initializable {
                     if(!listMarcasFNAC.isEmpty())
                         listTotalSearch.addAll(fnac.recogerObjetos(listMarcasFNAC));
 
-                    marcasSelected.clear();
-                    marcasSelected.addAll(listTotalSearch);
-                    mainApp.initItemsController(marcasSelected);
+                    listMarcasSelected.clear();
+                    listMarcasSelected.addAll(listTotalSearch);
+                    mainApp.initItemsController(listMarcasSelected);
 
                 } else {
                     //open the categories page with the cafes and tes brand
                     System.out.println("NO HAY MARCAS SELECCIONADAS, SE BUSCARA POR CATEGORIA: " + categoriaSelected);
-                    //marcasSelected = mediaMarkt.recogerObjetos(categoriaSelected.getListMarcas());
+                    //listMarcasSelected = mediaMarkt.recogerObjetos(categoriaSelected.getListMarcas());
 
 
                     List<Marca> listMarcasMediamarkt = new ArrayList<>();

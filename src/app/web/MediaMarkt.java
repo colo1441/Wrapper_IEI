@@ -1,8 +1,8 @@
-package app.scrap;
+package app.web;
 
-import app.model.Categoria;
-import app.model.Item;
-import app.model.Marca;
+import app.object.Categoria;
+import app.object.Cafetera;
+import app.object.Marca;
 import app.util.Constants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -52,7 +52,7 @@ public class MediaMarkt {
 
                 for (WebElement element : elementsCategoriesCafes) {
                     firstLevel = element.findElement(By.xpath(DESCENDANT_A));
-                    Categoria categoria = new Categoria(element.getText(), element);
+                    Categoria categoria = new Categoria(element.getText());
                     categoria.setSource(Constants.URL_MEDIA_MARKT);
                     categoria.setUrl(firstLevel.getAttribute(ATTRIBUTE_HREF));
 
@@ -101,7 +101,7 @@ public class MediaMarkt {
                     try {
                         firstLevel = marcaElement.findElement(By.xpath(DESCENDANT_A));
                         if (!marcaElement.getText().equalsIgnoreCase("")) {
-                            Marca marca = new Marca(marcaElement.getText(), marcaElement);
+                            Marca marca = new Marca(marcaElement.getText());
                             marca.setSource(Constants.MEDIA_MARKT);
                             marca.setUrl(firstLevel.getAttribute(ATTRIBUTE_HREF));
                             marcas.add(marca);
@@ -132,7 +132,7 @@ public class MediaMarkt {
         while(it.hasNext()){
             haveMore = true;
             marcaIterate = it.next();
-            marcaIterate.setListItems(new ArrayList<>());
+            marcaIterate.setListCafeteras(new ArrayList<>());
             capabilities = DesiredCapabilities.firefox();
             capabilities.setCapability(Constants.BROWSER, true);
             driver = new FirefoxDriver(capabilities);
@@ -152,7 +152,7 @@ public class MediaMarkt {
                 for (WebElement objeto : objetos) {
 
                     String nombre = objeto.findElement(By.xpath("./descendant::a[@class='productName product10Name']")).getText();
-                    String precio = objeto.findElement(By.xpath("./descendant::span[@class= 'bigpricesrc']")).getText() + "€";
+                    String precio = objeto.findElement(By.xpath("./descendant::meta[@class= 'meta-bigprices']")).getAttribute("content")+"€";
                     String descripcion = objeto.findElement(By.className("product10ShortDescription")).getText();
                     String url = objeto.findElement(By.xpath("./descendant::a[@class = 'productName product10Name']")).getAttribute(Constants.ATTRIBUTE_HREF);
 
@@ -160,12 +160,12 @@ public class MediaMarkt {
                     System.out.println("Precio ->" + precio);
                     System.out.println("Descripcion ->"+ descripcion);
                     System.out.println("URL ->"+ url);
-                    marcaIterate.getListItems().add(new Item(nombre,descripcion, marcaIterate.getNombre(), precio,Constants.MEDIA_MARKT ,url));
+                    marcaIterate.getListCafeteras().add(new Cafetera(nombre,descripcion, marcaIterate.getNombre(), precio,Constants.MEDIA_MARKT ,url));
 
                 }
                 cambiarPagina(driver);
             }
-            System.out.println("Longitud de la lista ->"+marcaIterate.getListItems().size());
+            System.out.println("Longitud de la lista ->"+marcaIterate.getListCafeteras().size());
         }
         return list;
     }

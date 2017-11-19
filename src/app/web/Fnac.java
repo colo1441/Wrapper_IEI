@@ -1,13 +1,11 @@
-package app.scrap;
+package app.web;
 
-import app.model.Categoria;
-import app.model.Item;
-import app.model.Marca;
-import app.model.Web;
+import app.object.Categoria;
+import app.object.Cafetera;
+import app.object.Marca;
 import app.util.Constants;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,7 +17,6 @@ import java.util.List;
 import static app.util.Constants.ATTRIBUTE_HREF;
 import static app.util.Constants.BROWSER;
 import static app.util.Constants.FNAC;
-import static app.util.Constants.Fnac.CAFE_MARCAS_LIST_ELEMENTS;
 
 public class Fnac {
 
@@ -55,7 +52,6 @@ public class Fnac {
                     if (!tipo.getText().equals("")) {
                         Categoria categoria = new Categoria(tipo.getText());
                         categoria.setUrl(tipo.getAttribute(ATTRIBUTE_HREF));
-                        categoria.setWebElement(tipo);
                         categoria.setSource(Constants.URL_FNAC);
                         categorias.add(categoria);
                     }
@@ -114,7 +110,7 @@ public class Fnac {
                 int i = 1;
                 for (WebElement marcaElement : elementsCafe) {
                     if (!marcaElement.getText().equalsIgnoreCase("")) {
-                        Marca marca = new Marca(marcaElement.getText(), marcaElement);
+                        Marca marca = new Marca(marcaElement.getText());
                         String url2 = marcaElement.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/div[2]/div/a["+i+"]")).getAttribute("data-filter");
                         System.out.println(url2);
                         marca.setUrl(categoria.getUrl()+ "?SFilt=" +url2);
@@ -151,7 +147,7 @@ public class Fnac {
             while (it.hasNext()) {
                 more = true;
                 marcaIterate = it.next();
-                marcaIterate.setListItems(new ArrayList<>());
+                marcaIterate.setListCafeteras(new ArrayList<>());
                 capabilities = DesiredCapabilities.firefox();
                 capabilities.setCapability(Constants.BROWSER, true);
                 driver = new FirefoxDriver(capabilities);
@@ -172,7 +168,7 @@ public class Fnac {
                         System.out.println("Descripcion ->" + description);
                         System.out.println("URL ->" + url);
 
-                        marcaIterate.getListItems().add(new Item(nombre, description, marcaIterate.getNombre(), precio, FNAC, url));
+                        marcaIterate.getListCafeteras().add(new Cafetera(nombre, description, marcaIterate.getNombre(), precio, FNAC, url));
 
                     }
                     cambiarPagina(driver);

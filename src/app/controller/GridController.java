@@ -1,18 +1,15 @@
 package app.controller;
 
-import app.Main;
-import app.model.Item;
-import app.model.Marca;
+import app.object.Cafetera;
+import app.object.Marca;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -20,40 +17,52 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ItemsController implements Initializable {
+public class GridController implements Initializable {
     private Stage primaryStage;
     private Main mainApp;
     private List<Marca> listBrands;
-    private List<Item> listTotalItems;
+    private List<Cafetera> listTotalCafeteras;
 
     @FXML
-    private TableView<Item> tableViewListItems;
+    Text txtTitle;
     @FXML
-    private TableColumn<Item, String> nombreColumn;
+    private TableView<Cafetera> tableViewListItems;
     @FXML
-    private TableColumn<Item, String> descripcionColumn;
+    private TableColumn<Cafetera, String> nombreColumn;
     @FXML
-    private TableColumn<Item, String> precioColumn;
+    private TableColumn<Cafetera, String> descripcionColumn;
     @FXML
-    private TableColumn<Item, String> marcaColumn;
+    private TableColumn<Cafetera, String> precioColumn;
     @FXML
-    private TableColumn<Item, String> sourceColumn;
+    private TableColumn<Cafetera, String> marcaColumn;
     @FXML
-    private TableColumn<Item, String> urlColumn;
+    private TableColumn<Cafetera, String> sourceColumn;
+    @FXML
+    private TableColumn<Cafetera, String> urlColumn;
 
-    @FXML
-    Button boton_aceptar;
-
-    private ObservableList<Item> listItemsObservable;
+    private ObservableList<Cafetera> listItemsObservable;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        boton_aceptar.setOnMouseClicked((EventHandler<Event>) event -> {
-            Stage stage = (Stage)boton_aceptar.getScene().getWindow();
-            stage.close();
-        });
 
+    }
+
+    private String initTitle() {
+        String text = "";
+        int count = 1;
+        for(Marca marca : listBrands){
+            if(text.isEmpty()){
+                text+=marca.getNombre();
+            } else {
+                text+=", "+marca.getNombre();
+            }
+            if (count>3)
+                return text+" ...";
+            count++;
+        }
+
+        return text;
     }
 
     public void initStage(Stage primaryStage, Main main, List<Marca> brands) {
@@ -68,6 +77,7 @@ public class ItemsController implements Initializable {
         }
 
         try {
+            txtTitle.setText(initTitle());
             nombreColumn.setCellValueFactory(param -> new
                     ReadOnlyObjectWrapper<>(param.getValue().getNombre()));
 
@@ -87,7 +97,7 @@ public class ItemsController implements Initializable {
                     ReadOnlyObjectWrapper<>(param.getValue().getUrl()));
 
 
-            listItemsObservable.addAll(listTotalItems);
+            listItemsObservable.addAll(listTotalCafeteras);
             tableViewListItems.setItems(listItemsObservable);
 
 
@@ -98,13 +108,13 @@ public class ItemsController implements Initializable {
     }
 
     private void fillTotalItemsOfBrands(List<Marca> listBrands) {
-        if(listTotalItems==null) listTotalItems = new ArrayList<>();
+        if(listTotalCafeteras ==null) listTotalCafeteras = new ArrayList<>();
         for(Marca marca : listBrands) {
-            if(marca.getListItems()!=null) {
-                listTotalItems.addAll(marca.getListItems());
+            if(marca.getListCafeteras()!=null) {
+                listTotalCafeteras.addAll(marca.getListCafeteras());
             }
         }
 
-        System.err.println("LISTA DE ITEMS : " + listTotalItems.size());
+        System.err.println("LISTA DE ITEMS : " + listTotalCafeteras.size());
     }
 }
