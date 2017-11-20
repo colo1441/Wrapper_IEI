@@ -76,26 +76,6 @@ public class Fnac {
             System.out.println("URL DE FNAC CATETORIA : " + categoria.getUrl());
             driver.get(categoria.getUrl());
 
-
-
-           /* Ocultar menus que no nos interesan */
-            // WebElement menos = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[1]/i"));
-            // menos.click();
-
-            // JavascriptExecutor jse = (JavascriptExecutor)driver;
-            /* Scroll Up */
-            // jse.executeScript("scroll(0, 250);");
-
-            //- WebElement menos2 = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[3]/i"));
-            // menos2.click();
-
-            // WebElement menos3 = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/span[4]/i"));
-            // menos3.click();
-
-            /* Scroll Down */
-            // jse.executeScript("scroll(0, -250);");
-
-            // Rellenar marcas de cafeteras
             try {
                 driver.findElement(By.xpath("./descendant::button[@class='toggleFilters js-toggleFilters']")).click();
             }catch (Exception e){
@@ -112,7 +92,6 @@ public class Fnac {
                     if (!marcaElement.getText().equalsIgnoreCase("")) {
                         Marca marca = new Marca(marcaElement.getText());
                         String url2 = marcaElement.findElement(By.xpath("/html/body/div[2]/div[1]/div/div[2]/div[3]/div[2]/div/a["+i+"]")).getAttribute("data-filter");
-                        System.out.println(url2);
                         marca.setUrl(categoria.getUrl()+ "?SFilt=" +url2);
                         marca.setSource(Constants.FNAC);
                         marcas.add(marca);
@@ -134,12 +113,8 @@ public class Fnac {
 
     }
 
-    public static void closeCookies() {
-        //CERRAR COOKIES
-        driver.findElement(By.cssSelector(Constants.Fnac.CLOSE_COOKIES)).click();
-    }
 
-    public List<Marca> recogerObjetos(List<Marca> list) {
+    public List<Marca> getCafeterasFrom(List<Marca> list) {
         System.out.println("LISTA RCIBIDA: " + list.size());
         try {
             Iterator<Marca> it = list.iterator();
@@ -161,14 +136,12 @@ public class Fnac {
 
                         String nombre = objeto.findElement(By.xpath("./descendant::a[@class='js-minifa-title']")).getText();
                         String precio = objeto.findElement(By.className("userPrice")).getText();
-                        String description = "No disponible";
+                        String description = "Descripción no disponible";
                         String url = objeto.findElement(By.xpath("./descendant::a[@class = 'js-minifa-title']")).getAttribute(Constants.ATTRIBUTE_HREF);
-                        System.out.println("Objeto ->" + nombre);
-                        System.out.println("Precio ->" + precio);
-                        System.out.println("Descripcion ->" + description);
-                        System.out.println("URL ->" + url);
+                        Cafetera cafetera = new Cafetera(nombre, description, marcaIterate.getNombre(), precio, FNAC, url);
+                        System.out.println("cafetera ->" + cafetera);
 
-                        marcaIterate.getListCafeteras().add(new Cafetera(nombre, description, marcaIterate.getNombre(), precio, FNAC, url));
+                        marcaIterate.getListCafeteras().add(cafetera);
 
                     }
                     cambiarPagina(driver);

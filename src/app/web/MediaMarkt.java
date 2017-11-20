@@ -76,10 +76,6 @@ public class MediaMarkt {
         return categorias;
     }
 
-    public void closeCookies() {
-        //CERRAR COOKIES
-        driver.findElement(By.id(Constants.MediaMarkt.CLOSE_COOKIES)).click();
-    }
 
     public List<Marca> getMarcasBySelection(Categoria categoria) {
         ArrayList<Marca> marcas = new ArrayList<>();
@@ -125,7 +121,7 @@ public class MediaMarkt {
         driver.quit();
         return marcas;
     }
-    public List<Marca> recogerObjetos(List<Marca> list) {
+    public List<Marca> getCafeterasFrom(List<Marca> list) {
 
         Iterator<Marca> it = list.iterator();
         Marca marcaIterate = null;
@@ -151,28 +147,27 @@ public class MediaMarkt {
                 List<WebElement> objetos = driver.findElements(By.id("categoryProductContainer"));
                 for (WebElement objeto : objetos) {
 
+
                     String nombre = objeto.findElement(By.xpath("./descendant::a[@class='productName product10Name']")).getText();
                     String precio = objeto.findElement(By.xpath("./descendant::meta[@class= 'meta-bigprices']")).getAttribute("content")+"€";
                     String descripcion = objeto.findElement(By.className("product10ShortDescription")).getText();
                     String url = objeto.findElement(By.xpath("./descendant::a[@class = 'productName product10Name']")).getAttribute(Constants.ATTRIBUTE_HREF);
 
-                    System.out.println("Objeto ->" + nombre);
-                    System.out.println("Precio ->" + precio);
-                    System.out.println("Descripcion ->"+ descripcion);
-                    System.out.println("URL ->"+ url);
-                    marcaIterate.getListCafeteras().add(new Cafetera(nombre,descripcion, marcaIterate.getNombre(), precio,Constants.MEDIA_MARKT ,url));
+                    Cafetera cafetera = new Cafetera(nombre,descripcion, marcaIterate.getNombre(), precio,Constants.MEDIA_MARKT ,url);
+
+                    System.out.println("Cafetera -> " +cafetera);
+
+                    marcaIterate.getListCafeteras().add(cafetera);
 
                 }
-                cambiarPagina(driver);
+                changeWebPagination(driver);
             }
             System.out.println("Longitud de la lista ->"+marcaIterate.getListCafeteras().size());
         }
         return list;
     }
 
-    public void cambiarPagina (WebDriver driver) {
-        WebElement pagina = driver.findElement(By.xpath("./descendant::div[@class = 'resumePaginator']"));
-
+    public void changeWebPagination(WebDriver driver) {
         try {
             WebElement BTSiguientePagina = driver.findElement(By.xpath("./descendant::a[@class= 'button bPager gray left arrow']"));
 

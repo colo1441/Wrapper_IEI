@@ -189,9 +189,9 @@ public class MainController implements Initializable {
                     List<Marca> listTotalSearch = new ArrayList<>();
 
                     if(!listMarcasMediamarkt.isEmpty())
-                        listTotalSearch.addAll(mediaMarkt.recogerObjetos(listMarcasMediamarkt));
+                        listTotalSearch.addAll(mediaMarkt.getCafeterasFrom(listMarcasMediamarkt));
                     if(!listMarcasFNAC.isEmpty())
-                        listTotalSearch.addAll(fnac.recogerObjetos(listMarcasFNAC));
+                        listTotalSearch.addAll(fnac.getCafeterasFrom(listMarcasFNAC));
 
                     listMarcasSelected.clear();
                     listMarcasSelected.addAll(listTotalSearch);
@@ -200,7 +200,7 @@ public class MainController implements Initializable {
                 } else {
                     //open the categories page with the cafes and tes brand
                     System.out.println("NO HAY MARCAS SELECCIONADAS, SE BUSCARA POR CATEGORIA: " + categoriaSelected);
-                    //listMarcasSelected = mediaMarkt.recogerObjetos(categoriaSelected.getListMarcas());
+                    //listMarcasSelected = mediaMarkt.getCafeterasFrom(categoriaSelected.getListMarcas());
 
 
                     List<Marca> listMarcasMediamarkt = new ArrayList<>();
@@ -215,9 +215,9 @@ public class MainController implements Initializable {
                     List<Marca> listTotalSearch = new ArrayList<>();
 
                     if(!listMarcasMediamarkt.isEmpty())
-                        listTotalSearch.addAll(mediaMarkt.recogerObjetos(listMarcasMediamarkt));
+                        listTotalSearch.addAll(mediaMarkt.getCafeterasFrom(listMarcasMediamarkt));
                     if(!listMarcasFNAC.isEmpty())
-                        listTotalSearch.addAll(fnac.recogerObjetos(listMarcasFNAC));
+                        listTotalSearch.addAll(fnac.getCafeterasFrom(listMarcasFNAC));
 
 
                     categoriaSelected.getListMarcas().clear();

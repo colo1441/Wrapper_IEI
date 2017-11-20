@@ -2,31 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="subida maria">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/object/Marca.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Wrapper_IEI/app/Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Wrapper_IEI/app/controller/ItemsController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Wrapper_IEI/app/controller/items.fxml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Wrapper_IEI/app/model/Categoria.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Wrapper_IEI/app/model/CommonElement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Wrapper_IEI/app/model/Item.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Wrapper_IEI/app/model/Marca.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Wrapper_IEI/app/model/Web.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Wrapper_IEI/app/scrap/Fnac.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Wrapper_IEI/app/scrap/MediaMarkt.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/model/Marca.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app/model/Web.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/Main.java" afterPath="$PROJECT_DIR$/src/app/controller/Main.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/controller/ItemsController.java" afterPath="$PROJECT_DIR$/src/app/controller/GridController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/controller/items.fxml" afterPath="$PROJECT_DIR$/src/app/controller/grid.fxml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/model/Categoria.java" afterPath="$PROJECT_DIR$/src/app/object/Categoria.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/model/CommonElement.java" afterPath="$PROJECT_DIR$/src/app/object/Base.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/model/Item.java" afterPath="$PROJECT_DIR$/src/app/object/Cafetera.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/scrap/Fnac.java" afterPath="$PROJECT_DIR$/src/app/web/Fnac.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/app/scrap/MediaMarkt.java" afterPath="$PROJECT_DIR$/src/app/web/MediaMarkt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Wrapper_IEI/app/controller/MainController.class" afterPath="$PROJECT_DIR$/out/production/Wrapper_IEI/app/controller/MainController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Wrapper_IEI/app/controller/main.fxml" afterPath="$PROJECT_DIR$/out/production/Wrapper_IEI/app/controller/main.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/controller/MainController.java" afterPath="$PROJECT_DIR$/src/app/controller/MainController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/controller/grid.fxml" afterPath="$PROJECT_DIR$/src/app/controller/grid.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/controller/main.fxml" afterPath="$PROJECT_DIR$/src/app/controller/main.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/util/Constants.java" afterPath="$PROJECT_DIR$/src/app/util/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/web/Fnac.java" afterPath="$PROJECT_DIR$/src/app/web/Fnac.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/web/MediaMarkt.java" afterPath="$PROJECT_DIR$/src/app/web/MediaMarkt.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,65 +66,34 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file leaf-file-name="MediaMarkt.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/web/MediaMarkt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1859">
-              <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cafetera.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/object/Cafetera.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="35" column="5" lean-forward="false" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+            <state relative-caret-position="255">
+              <caret line="157" column="65" lean-forward="false" selection-start-line="157" selection-start-column="65" selection-end-line="157" selection-end-column="65" />
               <folding>
-                <element signature="e#767#768#0" expanded="true" />
-                <element signature="e#795#796#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Base.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/object/Base.java">
+      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/util/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="20" lean-forward="false" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+            <state relative-caret-position="270">
+              <caret line="18" column="45" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Marca.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/object/Marca.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Categoria.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/object/Categoria.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Fnac.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Fnac.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/web/Fnac.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1626">
-              <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+            <state relative-caret-position="244">
+              <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -191,19 +143,21 @@
         <option value="$PROJECT_DIR$/src/app/model/Categoria.java" />
         <option value="$PROJECT_DIR$/src/app/model/CommonElement.java" />
         <option value="$PROJECT_DIR$/src/app/model/Item.java" />
-        <option value="$PROJECT_DIR$/src/app/controller/main.fxml" />
         <option value="$PROJECT_DIR$/src/app/scrap/Fnac.java" />
         <option value="$PROJECT_DIR$/src/app/scrap/MediaMarkt.java" />
         <option value="$PROJECT_DIR$/src/app/controller/MainController.java" />
         <option value="$PROJECT_DIR$/src/app/Main.java" />
-        <option value="$PROJECT_DIR$/src/app/util/Constants.java" />
         <option value="$PROJECT_DIR$/src/app/controller/items.fxml" />
         <option value="$PROJECT_DIR$/src/app/model/Marca.java" />
         <option value="$PROJECT_DIR$/src/app/controller/ItemsController.java" />
         <option value="$PROJECT_DIR$/src/app/controller/Main.java" />
-        <option value="$PROJECT_DIR$/src/app/web/Fnac.java" />
         <option value="$PROJECT_DIR$/src/app/object/Categoria.java" />
+        <option value="$PROJECT_DIR$/src/app/controller/main_two.fxml" />
+        <option value="$PROJECT_DIR$/src/app/controller/main.fxml" />
+        <option value="$PROJECT_DIR$/src/app/controller/grid.fxml" />
+        <option value="$PROJECT_DIR$/src/app/util/Constants.java" />
         <option value="$PROJECT_DIR$/src/app/web/MediaMarkt.java" />
+        <option value="$PROJECT_DIR$/src/app/web/Fnac.java" />
       </list>
     </option>
   </component>
@@ -295,10 +249,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="Scratches" />
-      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -324,6 +278,9 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="wrapper_iei" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/controller" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app/controller" />
       <recent name="$PROJECT_DIR$/src/app" />
@@ -481,12 +438,13 @@
       <workItem from="1510865063650" duration="5814000" />
       <workItem from="1510928649871" duration="13724000" />
       <workItem from="1511003398762" duration="17011000" />
-      <workItem from="1511122422434" duration="8389000" />
+      <workItem from="1511122422434" duration="10633000" />
+      <workItem from="1511136972526" duration="2918000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86313000" />
+    <option name="totallyTimeSpent" value="91475000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="22" width="1920" height="1058" extended-state="6" />
@@ -501,8 +459,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24870466" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3490446" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34818652" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17891374" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
@@ -575,7 +533,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/Controller.java" />
     <entry file="file://$PROJECT_DIR$/src/app/controller/main.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
         <state />
@@ -583,7 +540,9 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1511138420807" expanded="true" signature="3914:4071" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -602,7 +561,9 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1511138420807" expanded="true" signature="3914:4071" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -623,7 +584,9 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1511138420807" expanded="true" signature="3914:4071" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -643,7 +606,9 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1511138420807" expanded="true" signature="3914:4071" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -665,7 +630,9 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1511138420807" expanded="true" signature="3914:4071" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -694,7 +661,9 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1511138420807" expanded="true" signature="3914:4071" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -714,7 +683,9 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1511138420807" expanded="true" signature="3914:4071" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -734,7 +705,9 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1511138420807" expanded="true" signature="3914:4071" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -786,96 +759,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/util/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="106" lean-forward="false" selection-start-line="28" selection-start-column="106" selection-end-line="28" selection-end-column="106" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/model/Web.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/model/Web.java" />
     <entry file="file://$PROJECT_DIR$/src/app/controller/GridController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="61" column="30" lean-forward="false" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/controller/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="107" column="35" lean-forward="false" selection-start-line="107" selection-start-column="35" selection-end-line="107" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/controller/grid.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-          <folding>
-            <marker date="1511134086497" expanded="true" signature="2409:2422" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/controller/main.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="39" column="1" lean-forward="false" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/controller/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="25" column="21" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/web/Fnac.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1626">
-          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/web/MediaMarkt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1859">
-          <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/object/Cafetera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="35" column="5" lean-forward="false" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-          <folding>
-            <element signature="e#767#768#0" expanded="true" />
-            <element signature="e#795#796#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -895,10 +784,105 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/object/Cafetera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+          <folding>
+            <element signature="e#767#768#0" expanded="false" />
+            <element signature="e#795#796#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/controller/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="25" column="21" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/controller/main_two.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="64" column="49" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/controller/grid.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="83" lean-forward="false" selection-start-line="9" selection-start-column="83" selection-end-line="9" selection-end-column="83" />
+          <folding>
+            <marker date="1511139027288" expanded="true" signature="1511:2337" ph="..." />
+            <marker date="1511139027288" expanded="true" signature="1541:2147" ph="..." />
+            <marker date="1511139027288" expanded="true" signature="2188:2308" ph="..." />
+            <marker date="1511139027288" expanded="true" signature="2395:2408" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/controller/main.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="68" column="15" lean-forward="true" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
+          <folding>
+            <marker date="1511138420807" expanded="true" signature="3914:4071" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/object/Base.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="20" lean-forward="false" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/util/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="45" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/web/MediaMarkt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="157" column="65" lean-forward="false" selection-start-line="157" selection-start-column="65" selection-end-line="157" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/web/Fnac.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #FAFAFA;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.GridController">
+<AnchorPane prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.GridController">
     <children>
         <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="764.0" style="-fx-background-color: #fff; -fx-background-radius: 8;" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
             <children>
@@ -16,19 +16,19 @@
                         <Font name="Arial Bold" size="30.0" />
                     </font>
                 </Text>
-                <Text fill="#333333" fx:id="txtTitle" layoutX="286.0" layoutY="54.0" opacity="0.64" strokeType="OUTSIDE" strokeWidth="0.0" text="Braun, etc." wrappingWidth="646.71875">
+                <Text fx:id="txtTitle" fill="#333333" layoutX="286.0" layoutY="54.0" opacity="0.64" strokeType="OUTSIDE" strokeWidth="0.0" text="Braun, etc." wrappingWidth="646.71875">
                     <font>
                         <Font name="Arial" size="20.0" />
                     </font>
                 </Text>
-                <TableView fx:id="tableViewListItems" layoutX="11.0" layoutY="83.0" prefHeight="382.0" prefWidth="954.0">
+                <TableView fx:id="tableViewListItems" focusTraversable="false" layoutX="11.0" layoutY="83.0" prefHeight="382.0" prefWidth="954.0">
                     <columns>
                         <TableColumn fx:id="nombreColumn" prefWidth="155.0102081298828" text="NOMBRE" />
                         <TableColumn fx:id="descripcionColumn" prefWidth="75.0" text="DESCRIPCIÓN" />
-                        <TableColumn fx:id="precioColumn" prefWidth="132.75387573242188" text="PRECIO" />
-                        <TableColumn fx:id="marcaColumn" prefWidth="75.0" text="MARCA" />
-                        <TableColumn fx:id="sourceColumn" prefWidth="108.2462158203125" text="WEB" />
-                        <TableColumn fx:id="urlColumn" prefWidth="97.32647705078125" text="ENLACE WEB" />
+                        <TableColumn fx:id="precioColumn" prefWidth="107.0" text="PRECIO" />
+                        <TableColumn fx:id="marcaColumn" prefWidth="210.0" text="MARCA" />
+                        <TableColumn fx:id="sourceColumn" prefWidth="122.0" text="WEB" />
+                        <TableColumn fx:id="urlColumn" prefWidth="195.0" text="ENLACE WEB" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

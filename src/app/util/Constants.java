@@ -16,6 +16,7 @@ public class Constants {
 
     public static class MediaMarkt{
         public static final String DESCENDANT_A= "./descendant::a";
+        public static final String PAGINATION= "./descendant::div[@class = 'resumePaginator']";
         public static final String CLOSE_COOKIES= "close-cookies-law";
         public static final String WAITING_CATEGORIES_CAFE_TYPES ="categoryTree_10002237";
         public static final String CATEGORIES_CAFE_TYPES_LIST_ELEMENTS = "//*[contains(@class, 'categoriesTreeContainer categoriesTreeContainer1 ')]";
